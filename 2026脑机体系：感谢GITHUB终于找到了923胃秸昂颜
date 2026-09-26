@@ -1,0 +1,443 @@
+<h1> Mobile Article Aggregator Platform (MAP)</h1><br><br><hr><br>
+
+Mobile Article Aggregator Platform 是一个面向移动端内容聚合与分发场景的开源技术资源导航站。该项目定位于为开发者、技术研究人员以及内容运营团队提供结构化的移动端文章链接索引与快速检索能力，解决移动端技术文章分散、检索效率低下、域名迁移频繁导致链接失效等实际问题。
+
+项目本身不存储任何文章内容，仅作为外链元数据的索引层与展示层，通过静态化的资源列表与分类标签体系，帮助用户在海量移动端技术文档中快速定位目标资源。目标用户包括移动端开发工程师、全栈技术学习者、技术博客维护者以及企业内部知识库管理人员。
+
+<h2>功能概览</h2><br>
+
+<p><h3>海量链接索引管理</h3>：支持对超过 250 条移动端技术文章链接进行集中存储与分类展示，覆盖多种技术子领域。</p>
+
+<p><h3>静态化资源列表呈现</h3>：所有链接以纯 Markdown 形式维护于项目仓库中，无需数据库依赖，便于版本控制与协作编辑。</p>
+
+<p><h3>分类标签体系</h3>：根据文章主题、技术栈或访问热度对链接进行逻辑分组，降低用户筛选成本。</p>
+
+<p><h3>快速检索入口</h3>：提供基于文章 ID 或路径关键字的本地搜索功能，提升链接定位速度。</p>
+
+<p><h3>链接状态检测工具</h3>：集成可选的定时检测脚本，自动标记可能失效或响应异常的链接，保障资源列表的有效性。</p>
+
+<p><h3>移动端适配展示</h3>：前端模板针对手机和平板设备进行优化，确保在移动浏览器上获得良好的阅读与导航体验。</p>
+
+<p><h3>开源协作扩展机制</h3>：支持社区用户通过提交 Issue 或 Pull Request 的方式新增、更新或删除链接条目，保持资源列表的时效性。</p>
+
+<p><h3>轻量化部署能力</h3>：项目整体基于静态文件生成，可托管于任何支持 HTTP 服务的平台，包括 GitHub Pages、Cloudflare Pages 或自建 Nginx 服务器。</p>
+
+<h2>应用场景</h2><br>
+
+技术团队内部知识库建设：企业内部的技术团队可将本项目作为基础框架，整理团队内部积累的移动端技术文章链接，形成统一的知识索引入口，减少重复的文档查找工作。
+
+个人技术博客的友情链接扩展：独立技术博客作者可利用本项目的资源列表作为博客侧边栏的补充，为读者提供更多外部阅读资源，同时降低博客维护外链的复杂度。
+
+技术社区的内容聚合展示：技术社区运营方可基于本项目快速搭建文章推荐专区，将社区内的高质量技术帖按分类进行外链汇总，提升社区内容的曝光率与复用率。
+
+技术培训课程的参考资料索引：培训机构或技术讲师可将本项目作为课程参考资料库，将课程中涉及的外部延伸阅读链接统一整理到项目列表中，方便学员课后查阅。
+
+开源项目文档的关联资源导航：开源项目维护者可在项目文档中引用本项目的资源列表，为使用者提供相关的技术背景阅读材料，丰富项目的辅助信息生态。
+
+<h2>快速开始</h2><br>
+
+以下步骤将帮助您在本地环境快速部署并运行本项目的静态站点。
+
+# 1. 克隆项目仓库到本地
+git clone https://github.com/example/mobile-article-aggregator.git
+cd mobile-article-aggregator
+
+# 2. 安装项目依赖（基于 Node.js 环境）
+npm install
+
+# 3. 运行本地开发服务器，默认监听端口 3000
+npm run dev
+
+执行上述命令后，在浏览器中访问 `http://localhost:3000` 即可查看资源列表页面。如需构建生产环境静态文件，请执行 `npm run build`，生成的静态资源位于 `dist` 目录下。
+
+<h2>安装要求</h2><br>
+
+| 依赖项 | 必需版本 | 说明 |
+|--------|----------|------|
+| Node.js | 18.0 及以上 | 项目构建工具与开发服务器运行环境 |
+| npm | 8.0 及以上 | Node.js 包管理器，用于安装项目依赖 |
+| Git | 2.30 及以上 | 用于克隆仓库与版本管理 |
+| 现代浏览器 | Chrome 90+ / Firefox 88+ | 前端页面访问与调试支持 |
+| HTTP 服务器 | 任意静态文件服务 | 生产环境托管构建后的静态文件，如 Nginx、Caddy 或 Apache |
+| 可选：Shell 环境 | Bash 4.0+ | 运行链接状态检测脚本（位于 scripts/ 目录） |
+
+<h2>文档导航</h2><br>
+
+| 层面 | 目录 | 回答的问题 |
+|------|------|------------|
+| 用户入门 | docs/getting-started.md | 如何使用本项目的资源列表？如何通过分类标签快速找到所需文章？ |
+| 维护者指南 | docs/maintenance.md | 如何新增、修改或删除链接条目？链接格式校验规则是什么？ |
+| 开发贡献 | docs/contributing.md | 如何搭建开发环境？代码风格规范与提交信息格式要求有哪些？ |
+| 部署运维 | docs/deployment.md | 如何将站点部署到生产服务器？如何配置自定义域名与 HTTPS？ |
+
+<h2>资源列表</h2><br>
+
+<h3>移动端技术文章链接汇总</h3><br>
+
+以下列表收录了本批次（第 8/24 批，共300 个资源链接）的全部移动端文章外链。所有链接均按照用户提供的原始格式原样呈现，未做任何协议、域名或路径的改动。
+
+www.book.fsb-zg.com/Article/details/53879796.SHtML<br>
+www.book.fsb-zg.com/Article/details/01724984.SHtML<br>
+www.book.fsb-zg.com/Article/details/57832657.SHtML<br>
+www.book.fsb-zg.com/Article/details/99850335.SHtML<br>
+www.book.fsb-zg.com/Article/details/63828693.SHtML<br>
+www.book.fsb-zg.com/Article/details/22670125.SHtML<br>
+www.book.fsb-zg.com/Article/details/77814395.SHtML<br>
+www.book.fsb-zg.com/Article/details/44796620.SHtML<br>
+www.book.fsb-zg.com/Article/details/76281213.SHtML<br>
+www.book.fsb-zg.com/Article/details/12343250.SHtML<br>
+www.book.fsb-zg.com/Article/details/00839859.SHtML<br>
+www.book.fsb-zg.com/Article/details/32398647.SHtML<br>
+www.book.fsb-zg.com/Article/details/05356653.SHtML<br>
+www.book.fsb-zg.com/Article/details/94294216.SHtML<br>
+www.book.fsb-zg.com/Article/details/49955002.SHtML<br>
+www.book.fsb-zg.com/Article/details/69894380.SHtML<br>
+www.book.fsb-zg.com/Article/details/66809129.SHtML<br>
+www.book.fsb-zg.com/Article/details/04984943.SHtML<br>
+www.book.fsb-zg.com/Article/details/06584697.SHtML<br>
+www.book.fsb-zg.com/Article/details/41620661.SHtML<br>
+www.book.fsb-zg.com/Article/details/15309790.SHtML<br>
+www.book.fsb-zg.com/Article/details/81750064.SHtML<br>
+www.book.fsb-zg.com/Article/details/71834335.SHtML<br>
+www.book.fsb-zg.com/Article/details/09558193.SHtML<br>
+www.book.fsb-zg.com/Article/details/63546692.SHtML<br>
+www.book.fsb-zg.com/Article/details/05024743.SHtML<br>
+www.book.fsb-zg.com/Article/details/34358427.SHtML<br>
+www.book.fsb-zg.com/Article/details/27791447.SHtML<br>
+www.book.fsb-zg.com/Article/details/91034249.SHtML<br>
+www.book.fsb-zg.com/Article/details/63559522.SHtML<br>
+www.book.fsb-zg.com/Article/details/63868307.SHtML<br>
+www.book.fsb-zg.com/Article/details/64632523.SHtML<br>
+www.book.fsb-zg.com/Article/details/56762296.SHtML<br>
+www.book.fsb-zg.com/Article/details/71653007.SHtML<br>
+www.book.fsb-zg.com/Article/details/63951329.SHtML<br>
+www.book.fsb-zg.com/Article/details/75331260.SHtML<br>
+www.book.fsb-zg.com/Article/details/63878361.SHtML<br>
+www.book.fsb-zg.com/Article/details/73738712.SHtML<br>
+www.book.fsb-zg.com/Article/details/47666782.SHtML<br>
+www.book.fsb-zg.com/Article/details/28758122.SHtML<br>
+www.book.fsb-zg.com/Article/details/06489641.SHtML<br>
+www.book.fsb-zg.com/Article/details/41701408.SHtML<br>
+www.book.fsb-zg.com/Article/details/43867779.SHtML<br>
+www.book.fsb-zg.com/Article/details/28032761.SHtML<br>
+www.book.fsb-zg.com/Article/details/34022694.SHtML<br>
+www.book.fsb-zg.com/Article/details/89863934.SHtML<br>
+www.book.fsb-zg.com/Article/details/76791417.SHtML<br>
+www.book.fsb-zg.com/Article/details/04652030.SHtML<br>
+www.book.fsb-zg.com/Article/details/59137414.SHtML<br>
+www.book.fsb-zg.com/Article/details/52768531.SHtML<br>
+www.book.fsb-zg.com/Article/details/92518278.SHtML<br>
+www.book.fsb-zg.com/Article/details/38376959.SHtML<br>
+www.book.fsb-zg.com/Article/details/99725785.SHtML<br>
+www.book.fsb-zg.com/Article/details/06763624.SHtML<br>
+www.book.fsb-zg.com/Article/details/97294607.SHtML<br>
+www.book.fsb-zg.com/Article/details/46103137.SHtML<br>
+www.book.fsb-zg.com/Article/details/90584652.SHtML<br>
+www.book.fsb-zg.com/Article/details/91525020.SHtML<br>
+www.book.fsb-zg.com/Article/details/42195228.SHtML<br>
+www.book.fsb-zg.com/Article/details/49555805.SHtML<br>
+www.book.fsb-zg.com/Article/details/37254817.SHtML<br>
+www.book.fsb-zg.com/Article/details/39162122.SHtML<br>
+www.book.fsb-zg.com/Article/details/02368523.SHtML<br>
+www.book.fsb-zg.com/Article/details/60263250.SHtML<br>
+www.book.fsb-zg.com/Article/details/04910252.SHtML<br>
+www.book.fsb-zg.com/Article/details/12763864.SHtML<br>
+www.book.fsb-zg.com/Article/details/07284903.SHtML<br>
+www.book.fsb-zg.com/Article/details/15110502.SHtML<br>
+www.book.fsb-zg.com/Article/details/18257639.SHtML<br>
+www.book.fsb-zg.com/Article/details/04931290.SHtML<br>
+www.book.fsb-zg.com/Article/details/42328301.SHtML<br>
+www.book.fsb-zg.com/Article/details/66895937.SHtML<br>
+www.book.fsb-zg.com/Article/details/38247530.SHtML<br>
+www.book.fsb-zg.com/Article/details/44875550.SHtML<br>
+www.book.fsb-zg.com/Article/details/36298700.SHtML<br>
+www.book.fsb-zg.com/Article/details/91210937.SHtML<br>
+www.book.fsb-zg.com/Article/details/22978206.SHtML<br>
+www.book.fsb-zg.com/Article/details/41606586.SHtML<br>
+www.book.fsb-zg.com/Article/details/34997190.SHtML<br>
+www.book.fsb-zg.com/Article/details/28436918.SHtML<br>
+www.book.fsb-zg.com/Article/details/23253287.SHtML<br>
+www.book.fsb-zg.com/Article/details/18973443.SHtML<br>
+www.book.fsb-zg.com/Article/details/04819442.SHtML<br>
+www.book.fsb-zg.com/Article/details/50552864.SHtML<br>
+www.book.fsb-zg.com/Article/details/25024927.SHtML<br>
+www.book.fsb-zg.com/Article/details/28643303.SHtML<br>
+www.book.fsb-zg.com/Article/details/36547359.SHtML<br>
+www.book.fsb-zg.com/Article/details/72138642.SHtML<br>
+www.book.fsb-zg.com/Article/details/00981970.SHtML<br>
+www.book.fsb-zg.com/Article/details/86921043.SHtML<br>
+www.book.fsb-zg.com/Article/details/70136439.SHtML<br>
+www.book.fsb-zg.com/Article/details/53143170.SHtML<br>
+www.book.fsb-zg.com/Article/details/98452406.SHtML<br>
+www.book.fsb-zg.com/Article/details/19760559.SHtML<br>
+www.book.fsb-zg.com/Article/details/49113001.SHtML<br>
+www.book.fsb-zg.com/Article/details/85742589.SHtML<br>
+www.book.fsb-zg.com/Article/details/38022026.SHtML<br>
+www.book.fsb-zg.com/Article/details/41728628.SHtML<br>
+www.book.fsb-zg.com/Article/details/33206971.SHtML<br>
+www.book.fsb-zg.com/Article/details/37213544.SHtML<br>
+www.book.fsb-zg.com/Article/details/45215433.SHtML<br>
+www.book.fsb-zg.com/Article/details/81979651.SHtML<br>
+www.book.fsb-zg.com/Article/details/62512898.SHtML<br>
+www.book.fsb-zg.com/Article/details/27523384.SHtML<br>
+www.book.fsb-zg.com/Article/details/48358335.SHtML<br>
+www.book.fsb-zg.com/Article/details/55683051.SHtML<br>
+www.book.fsb-zg.com/Article/details/74580679.SHtML<br>
+www.book.fsb-zg.com/Article/details/50513190.SHtML<br>
+www.book.fsb-zg.com/Article/details/22816103.SHtML<br>
+www.book.fsb-zg.com/Article/details/57891696.SHtML<br>
+www.book.fsb-zg.com/Article/details/85005858.SHtML<br>
+www.book.fsb-zg.com/Article/details/74365749.SHtML<br>
+www.book.fsb-zg.com/Article/details/04972518.SHtML<br>
+www.book.fsb-zg.com/Article/details/13829418.SHtML<br>
+www.book.fsb-zg.com/Article/details/08398194.SHtML<br>
+www.book.fsb-zg.com/Article/details/66435073.SHtML<br>
+www.book.fsb-zg.com/Article/details/82690174.SHtML<br>
+www.book.fsb-zg.com/Article/details/26805543.SHtML<br>
+www.book.fsb-zg.com/Article/details/68234849.SHtML<br>
+www.book.fsb-zg.com/Article/details/85352199.SHtML<br>
+www.book.fsb-zg.com/Article/details/81207819.SHtML<br>
+www.book.fsb-zg.com/Article/details/98377858.SHtML<br>
+www.book.fsb-zg.com/Article/details/38037728.SHtML<br>
+www.book.fsb-zg.com/Article/details/55467965.SHtML<br>
+www.book.fsb-zg.com/Article/details/04002004.SHtML<br>
+www.book.fsb-zg.com/Article/details/35628713.SHtML<br>
+www.book.fsb-zg.com/Article/details/15098040.SHtML<br>
+www.book.fsb-zg.com/Article/details/11067085.SHtML<br>
+www.book.fsb-zg.com/Article/details/06236422.SHtML<br>
+www.book.fsb-zg.com/Article/details/83732797.SHtML<br>
+www.book.fsb-zg.com/Article/details/14532450.SHtML<br>
+www.book.fsb-zg.com/Article/details/94536880.SHtML<br>
+www.book.fsb-zg.com/Article/details/11384302.SHtML<br>
+www.book.fsb-zg.com/Article/details/69179434.SHtML<br>
+www.book.fsb-zg.com/Article/details/75430867.SHtML<br>
+www.book.fsb-zg.com/Article/details/79476432.SHtML<br>
+www.book.fsb-zg.com/Article/details/14627798.SHtML<br>
+www.book.fsb-zg.com/Article/details/50597361.SHtML<br>
+www.book.fsb-zg.com/Article/details/16145102.SHtML<br>
+www.book.fsb-zg.com/Article/details/86722506.SHtML<br>
+www.book.fsb-zg.com/Article/details/15367688.SHtML<br>
+www.book.fsb-zg.com/Article/details/81657853.SHtML<br>
+www.book.fsb-zg.com/Article/details/71497216.SHtML<br>
+www.book.fsb-zg.com/Article/details/09422190.SHtML<br>
+www.book.fsb-zg.com/Article/details/77225551.SHtML<br>
+www.book.fsb-zg.com/Article/details/97640822.SHtML<br>
+www.book.fsb-zg.com/Article/details/97960138.SHtML<br>
+www.book.fsb-zg.com/Article/details/48628607.SHtML<br>
+www.book.fsb-zg.com/Article/details/63651255.SHtML<br>
+www.book.fsb-zg.com/Article/details/83273995.SHtML<br>
+www.book.fsb-zg.com/Article/details/01867158.SHtML<br>
+www.book.fsb-zg.com/Article/details/86442969.SHtML<br>
+www.book.fsb-zg.com/Article/details/16146522.SHtML<br>
+www.book.fsb-zg.com/Article/details/32332189.SHtML<br>
+www.book.fsb-zg.com/Article/details/42411796.SHtML<br>
+www.book.fsb-zg.com/Article/details/27955039.SHtML<br>
+www.book.fsb-zg.com/Article/details/86516075.SHtML<br>
+www.book.fsb-zg.com/Article/details/67699655.SHtML<br>
+www.book.fsb-zg.com/Article/details/35363596.SHtML<br>
+www.book.fsb-zg.com/Article/details/38621381.SHtML<br>
+www.book.fsb-zg.com/Article/details/90535968.SHtML<br>
+www.book.fsb-zg.com/Article/details/27946994.SHtML<br>
+www.book.fsb-zg.com/Article/details/21554363.SHtML<br>
+www.book.fsb-zg.com/Article/details/08799641.SHtML<br>
+www.book.fsb-zg.com/Article/details/11679847.SHtML<br>
+www.book.fsb-zg.com/Article/details/16533056.SHtML<br>
+www.book.fsb-zg.com/Article/details/02533623.SHtML<br>
+www.book.fsb-zg.com/Article/details/43928544.SHtML<br>
+www.book.fsb-zg.com/Article/details/07602102.SHtML<br>
+www.book.fsb-zg.com/Article/details/46874218.SHtML<br>
+www.book.fsb-zg.com/Article/details/52810678.SHtML<br>
+www.book.fsb-zg.com/Article/details/99842257.SHtML<br>
+www.book.fsb-zg.com/Article/details/91349944.SHtML<br>
+www.book.fsb-zg.com/Article/details/94384238.SHtML<br>
+www.book.fsb-zg.com/Article/details/42102295.SHtML<br>
+www.book.fsb-zg.com/Article/details/82408036.SHtML<br>
+www.book.fsb-zg.com/Article/details/12798418.SHtML<br>
+www.book.fsb-zg.com/Article/details/64341093.SHtML<br>
+www.book.fsb-zg.com/Article/details/23883755.SHtML<br>
+www.book.fsb-zg.com/Article/details/59732696.SHtML<br>
+www.book.fsb-zg.com/Article/details/21029852.SHtML<br>
+www.book.fsb-zg.com/Article/details/42725180.SHtML<br>
+www.book.fsb-zg.com/Article/details/26621553.SHtML<br>
+www.book.fsb-zg.com/Article/details/08362596.SHtML<br>
+www.book.fsb-zg.com/Article/details/59019668.SHtML<br>
+www.book.fsb-zg.com/Article/details/59133216.SHtML<br>
+www.book.fsb-zg.com/Article/details/68719637.SHtML<br>
+www.book.fsb-zg.com/Article/details/54283906.SHtML<br>
+www.book.fsb-zg.com/Article/details/59420032.SHtML<br>
+www.book.fsb-zg.com/Article/details/15703077.SHtML<br>
+www.book.fsb-zg.com/Article/details/93921099.SHtML<br>
+www.book.fsb-zg.com/Article/details/29967225.SHtML<br>
+www.book.fsb-zg.com/Article/details/58030392.SHtML<br>
+www.book.fsb-zg.com/Article/details/33532630.SHtML<br>
+www.book.fsb-zg.com/Article/details/25439870.SHtML<br>
+www.book.fsb-zg.com/Article/details/61058776.SHtML<br>
+www.book.fsb-zg.com/Article/details/98608381.SHtML<br>
+www.book.fsb-zg.com/Article/details/37987977.SHtML<br>
+www.book.fsb-zg.com/Article/details/02760300.SHtML<br>
+www.book.fsb-zg.com/Article/details/30354158.SHtML<br>
+www.book.fsb-zg.com/Article/details/52776587.SHtML<br>
+www.book.fsb-zg.com/Article/details/89472454.SHtML<br>
+www.book.fsb-zg.com/Article/details/64984707.SHtML<br>
+www.book.fsb-zg.com/Article/details/00324729.SHtML<br>
+www.book.fsb-zg.com/Article/details/26247254.SHtML<br>
+www.book.fsb-zg.com/Article/details/04698927.SHtML<br>
+www.book.fsb-zg.com/Article/details/57581081.SHtML<br>
+www.book.fsb-zg.com/Article/details/28747629.SHtML<br>
+www.book.fsb-zg.com/Article/details/64331882.SHtML<br>
+www.book.fsb-zg.com/Article/details/64049301.SHtML<br>
+www.book.fsb-zg.com/Article/details/29969388.SHtML<br>
+www.book.fsb-zg.com/Article/details/38399560.SHtML<br>
+www.book.fsb-zg.com/Article/details/83298967.SHtML<br>
+www.book.fsb-zg.com/Article/details/45733829.SHtML<br>
+www.book.fsb-zg.com/Article/details/83227032.SHtML<br>
+www.book.fsb-zg.com/Article/details/79210710.SHtML<br>
+www.book.fsb-zg.com/Article/details/59136317.SHtML<br>
+www.book.fsb-zg.com/Article/details/29570315.SHtML<br>
+www.book.fsb-zg.com/Article/details/73491225.SHtML<br>
+www.book.fsb-zg.com/Article/details/73794001.SHtML<br>
+www.book.fsb-zg.com/Article/details/21136398.SHtML<br>
+www.book.fsb-zg.com/Article/details/02438246.SHtML<br>
+www.book.fsb-zg.com/Article/details/59068817.SHtML<br>
+www.book.fsb-zg.com/Article/details/93887097.SHtML<br>
+www.book.fsb-zg.com/Article/details/67681118.SHtML<br>
+www.book.fsb-zg.com/Article/details/80565680.SHtML<br>
+www.book.fsb-zg.com/Article/details/06560953.SHtML<br>
+www.book.fsb-zg.com/Article/details/97930295.SHtML<br>
+www.book.fsb-zg.com/Article/details/06445017.SHtML<br>
+www.book.fsb-zg.com/Article/details/51068225.SHtML<br>
+www.book.fsb-zg.com/Article/details/31065211.SHtML<br>
+www.book.fsb-zg.com/Article/details/56251485.SHtML<br>
+www.book.fsb-zg.com/Article/details/86181706.SHtML<br>
+www.book.fsb-zg.com/Article/details/87984441.SHtML<br>
+www.book.fsb-zg.com/Article/details/16542596.SHtML<br>
+www.book.fsb-zg.com/Article/details/94363249.SHtML<br>
+www.book.fsb-zg.com/Article/details/97574674.SHtML<br>
+www.book.fsb-zg.com/Article/details/80913312.SHtML<br>
+www.book.fsb-zg.com/Article/details/90959273.SHtML<br>
+www.book.fsb-zg.com/Article/details/61036525.SHtML<br>
+www.book.fsb-zg.com/Article/details/25749293.SHtML<br>
+www.book.fsb-zg.com/Article/details/39148648.SHtML<br>
+www.book.fsb-zg.com/Article/details/78371379.SHtML<br>
+www.book.fsb-zg.com/Article/details/57294391.SHtML<br>
+www.book.fsb-zg.com/Article/details/98732889.SHtML<br>
+www.book.fsb-zg.com/Article/details/60216693.SHtML<br>
+www.book.fsb-zg.com/Article/details/50313037.SHtML<br>
+www.book.fsb-zg.com/Article/details/59146630.SHtML<br>
+www.book.fsb-zg.com/Article/details/12681338.SHtML<br>
+www.book.fsb-zg.com/Article/details/88434275.SHtML<br>
+www.book.fsb-zg.com/Article/details/35431934.SHtML<br>
+www.book.fsb-zg.com/Article/details/36421417.SHtML<br>
+www.book.fsb-zg.com/Article/details/34910580.SHtML<br>
+www.book.fsb-zg.com/Article/details/05166303.SHtML<br>
+www.book.fsb-zg.com/Article/details/80619456.SHtML<br>
+www.book.fsb-zg.com/Article/details/23944300.SHtML<br>
+www.book.fsb-zg.com/Article/details/48391148.SHtML<br>
+www.book.fsb-zg.com/Article/details/60053589.SHtML<br>
+www.book.fsb-zg.com/Article/details/48366958.SHtML<br>
+www.book.fsb-zg.com/Article/details/61660207.SHtML<br>
+www.book.fsb-zg.com/Article/details/42140963.SHtML<br>
+www.book.fsb-zg.com/Article/details/94000110.SHtML<br>
+www.book.fsb-zg.com/Article/details/50392953.SHtML<br>
+www.book.fsb-zg.com/Article/details/71706597.SHtML<br>
+www.book.fsb-zg.com/Article/details/64928756.SHtML<br>
+www.book.fsb-zg.com/Article/details/91659801.SHtML<br>
+www.book.fsb-zg.com/Article/details/26533706.SHtML<br>
+www.book.fsb-zg.com/Article/details/05336515.SHtML<br>
+www.book.fsb-zg.com/Article/details/75443473.SHtML<br>
+www.book.fsb-zg.com/Article/details/78087488.SHtML<br>
+www.book.fsb-zg.com/Article/details/86531733.SHtML<br>
+www.book.fsb-zg.com/Article/details/83723317.SHtML<br>
+www.book.fsb-zg.com/Article/details/41476338.SHtML<br>
+www.book.fsb-zg.com/Article/details/20587195.SHtML<br>
+www.book.fsb-zg.com/Article/details/89702700.SHtML<br>
+www.book.fsb-zg.com/Article/details/82869382.SHtML<br>
+www.book.fsb-zg.com/Article/details/80980041.SHtML<br>
+www.book.fsb-zg.com/Article/details/34624339.SHtML<br>
+www.book.fsb-zg.com/Article/details/13948793.SHtML<br>
+www.book.fsb-zg.com/Article/details/38086183.SHtML<br>
+www.book.fsb-zg.com/Article/details/49087353.SHtML<br>
+www.book.fsb-zg.com/Article/details/61661339.SHtML<br>
+www.book.fsb-zg.com/Article/details/31333762.SHtML<br>
+www.book.fsb-zg.com/Article/details/76183221.SHtML<br>
+www.book.fsb-zg.com/Article/details/01439580.SHtML<br>
+www.book.fsb-zg.com/Article/details/94982831.SHtML<br>
+www.book.fsb-zg.com/Article/details/14324772.SHtML<br>
+www.book.fsb-zg.com/Article/details/44002345.SHtML<br>
+www.book.fsb-zg.com/Article/details/86484993.SHtML<br>
+www.book.fsb-zg.com/Article/details/27981095.SHtML<br>
+www.book.fsb-zg.com/Article/details/86250741.SHtML<br>
+www.book.fsb-zg.com/Article/details/30975478.SHtML<br>
+www.book.fsb-zg.com/Article/details/37686206.SHtML<br>
+www.book.fsb-zg.com/Article/details/20691495.SHtML<br>
+www.book.fsb-zg.com/Article/details/87331335.SHtML<br>
+www.book.fsb-zg.com/Article/details/38911911.SHtML<br>
+www.book.fsb-zg.com/Article/details/15494305.SHtML<br>
+www.book.fsb-zg.com/Article/details/26699815.SHtML<br>
+www.book.fsb-zg.com/Article/details/94302571.SHtML<br>
+
+<h2>项目结构</h2><br>
+
+项目目录采用模块化分层设计，便于维护与扩展。各子目录职责清晰，核心资源列表与前端展示逻辑分离。
+
+
+mobile-article-aggregator/
+├── public/                          # 静态资源目录，无需构建直接复制
+│   ├── favicon.ico                  # 站点图标文件
+│   └── robots.txt                   # 搜索引擎爬虫规则，屏蔽非生产环境路径
+├── src/                             # 源代码主目录
+│   ├── assets/                      # 前端资源文件（图片、字体、全局样式）
+│   │   ├── images/                  # 项目用到的矢量图与位图素材
+│   │   └── styles/                  # 全局基础样式与 CSS 变量定义
+│   ├── components/                  # 可复用的 UI 组件
+│   │   ├── LinkList.vue             # 链接列表核心渲染组件，支持分页与过滤
+│   │   ├── SearchBar.vue            # 关键字搜索输入组件
+│   │   └── CategoryFilter.vue       # 分类标签筛选组件
+│   ├── data/                        # 数据层，存放静态链接资源列表
+│   │   ├── links.json               # 主链接索引文件，包含全部 250 条记录
+│   │   └── categories.json          # 分类映射表，定义标签与链接 ID 的对应关系
+│   ├── layouts/                     # 页面布局模板
+│   │   ├── default.vue              # 默认两栏布局（侧边栏 + 主内容区）
+│   │   └── full-width.vue           # 全宽布局，用于搜索与统计页面
+│   ├── pages/                       # 路由页面入口
+│   │   ├── index.vue                # 首页，展示全部资源列表与分类概览
+│   │   ├── about.vue                # 项目介绍与使用说明页面
+│   │   └── stats.vue                # 链接统计信息页面（总数、分类分布）
+│   ├── utils/                       # 工具函数库
+│   │   ├── validator.js             # 链接格式校验与规范化工具
+│   │   └── filter.js                # 数组过滤与排序辅助函数
+│   └── main.js                      # 应用入口文件，初始化 Vue 实例与插件
+├── scripts/                         # 运维与辅助脚本
+│   ├── check-links.sh               # 批量检测链接可用性的 Bash 脚本
+│   └── generate-sitemap.js          # 生成站点地图 XML 文件的 Node 脚本
+├── tests/                           # 单元测试与集成测试
+│   ├── unit/                        # 组件与函数的单元测试用例
+│   └── e2e/                         # 端到端测试脚本（基于 Playwright）
+├── .gitignore                       # Git 版本忽略规则文件
+├── package.json                     # Node.js 项目依赖与脚本定义
+├── README.md                        # 项目说明文档（本文件）
+├── LICENSE                          # MIT 许可证全文
+└── vite.config.js                   # Vite 构建工具配置文件
+
+
+<h2> 贡献指南</h2><br>
+
+我们欢迎社区开发者以多种形式参与本项目的维护与改进。所有贡献需遵守项目行为准则，并按照以下流程操作。
+
+第一步：查阅现有 Issue 与 Pull Request。在提交新贡献之前，请先浏览 GitHub 上的现有议题，确认无人正在处理相同问题或功能请求，避免重复劳动。
+
+第二步：Fork 项目并创建功能分支。将本仓库 Fork 至个人账号下，然后基于 `main` 分支创建一个新的分支，分支命名建议采用 `feature/功能描述` 或 `fix/问题简述` 的格式。
+
+第三步：完成代码或文档修改。请遵循项目既定的代码风格（ESLint 配置）与提交信息规范（使用 Conventional Commits 格式）。若涉及链接列表的增删，请同步更新 `src/data/links.json` 中的对应条目。
+
+第四步：编写或更新测试用例。对于新增的功能或修复的缺陷，请在 `tests/` 目录下补充相应的单元测试或端到端测试，确保代码覆盖率不下降。
+
+第五步：提交 Pull Request。推送本地分支到远程仓库后，向本项目的 `main` 分支发起 Pull Request，并在描述中清晰说明修改内容、动机以及相关 Issue 编号。项目维护者会在三个工作日内进行审阅。
+
+<h2>常见问题</h2><br>
+
+问：如何快速判断某条链接是否仍然有效？
+
+答：项目根目录下的 `scripts/check
+
+> 外链数量: 350 | 生成时间:2026-09-2620:34:31
